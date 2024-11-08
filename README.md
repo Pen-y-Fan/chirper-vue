@@ -52,6 +52,8 @@ Configure the Laravel **.env** as per you local setup. e.g.
 ```text
 APP_NAME="Chirper VUE"
 # ... other content
+APP_URL=https://chirper-vue.test
+# ... other content
 ```
 
 Laravel 11 can use many databases, by default the database is **sqlite**, if you have errors such as **could not find
@@ -80,6 +82,8 @@ This project uses models and seeders to generate the tables for the database.
 
 ```shell
 php artisan migrate
+# or if previously migrated: 
+php artisan migrate:fresh --seed
 ```
 
 ## Start the app
@@ -108,4 +112,4 @@ welcome to fork or clone for your own use.
 
 ## License
 
-MIT Licence (MIT). Please see [Licence File](LICENSE.md) for more information.
+MIT License (MIT). Please see [License File](LICENSE.md) for more information.
