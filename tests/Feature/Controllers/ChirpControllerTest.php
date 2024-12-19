@@ -203,4 +203,50 @@ class ChirpControllerTest extends TestCase
             'message' => 'Initial message', // Should remain unchanged
         ]);
     }
+
+    #[Test]
+    public function it_deletes_a_chirp_successfully_as_an_authorized_user(): void
+    {
+        $user = User::factory()->create();
+        $chirp = Chirp::factory()->for($user)->create();
+
+        $this->actingAs($user);
+
+        $response = $this->delete(route('chirps.destroy', $chirp));
+
+        $response->assertRedirect(route('chirps.index'));
+        $this->assertDatabaseMissing('chirps', [
+            'id' => $chirp->id,
+        ]);
+    }
+
+    #[Test]
+    public function it_prevents_deleting_a_chirp_by_unauthorized_user(): void
+    {
+        $author = User::factory()->create();
+        $otherUser = User::factory()->create();
+        $chirp = Chirp::factory()->for($author)->create();
+
+        $this->actingAs($otherUser);
+
+        $response = $this->delete(route('chirps.destroy', $chirp));
+
+        $response->assertForbidden();
+        $this->assertDatabaseHas('chirps', [
+            'id' => $chirp->id,
+        ]);
+    }
+
+    #[Test]
+    public function it_redirects_to_login_when_unauthenticated_user_attempts_to_delete_a_chirp(): void
+    {
+        $chirp = Chirp::factory()->create();
+
+        $response = $this->delete(route('chirps.destroy', $chirp));
+
+        $response->assertRedirect(route('login'));
+        $this->assertDatabaseHas('chirps', [
+            'id' => $chirp->id,
+        ]);
+    }
 }
