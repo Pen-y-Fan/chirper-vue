@@ -73,7 +73,7 @@ php artisan key:generate
 The **sqlite** database will need to be manually created e.g.
 
 ```shell
-@php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
+php -r "file_exists('database/database.sqlite') || touch('database/database.sqlite');"
 ```
 
 ## Install Database
@@ -112,4 +112,4 @@ welcome to fork or clone for your own use.
 
 ## License
 
-MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+MIT Licence (MIT). Please see [Licence File](LICENSE.md) for more information.
