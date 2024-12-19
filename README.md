@@ -94,12 +94,25 @@ This is a Vue project which uses Vite, for development use:
 npm run dev
 ```
 
+Open the app e.g. https://chirper-vue.test/chirps sign in with the seeded user:
+
+- User: **test@example.com**
+- Password: **password**
+
 ## Packages
 
 The following packages have been used:
 
 - [laravel/breeze](https://laravel.com/docs/11.x/starter-kits#laravel-breeze)
 - [breeze:install vue](https://laravel.com/docs/11.x/starter-kits#breeze-and-inertia)
+
+## Testing
+
+PhpUnit has been used to test the app, to run the test:
+
+```shell
+php artisan test
+```
 
 ## Contributing
 
